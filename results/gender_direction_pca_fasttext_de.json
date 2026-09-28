@@ -1,0 +1,89 @@
+{
+  "model": "fasttext_de",
+  "gender_pairs_total": 5,
+  "gender_pairs_used": 5,
+  "gender_pairs": [
+    {
+      "male": "Mann",
+      "female": "Frau"
+    },
+    {
+      "male": "Vater",
+      "female": "Mutter"
+    },
+    {
+      "male": "Sohn",
+      "female": "Tochter"
+    },
+    {
+      "male": "Bruder",
+      "female": "Schwester"
+    },
+    {
+      "male": "Junge",
+      "female": "Mädchen"
+    }
+  ],
+  "pca_components": 1,
+  "explained_variance_ratio": 0.4302193224430084,
+  "occupation_pairs_total": 8,
+  "occupation_pairs_used": 8,
+  "occupation_results": [
+    {
+      "male": "Arzt",
+      "female": "Ärztin",
+      "male_gender_direction_score": -0.08969976007938385,
+      "female_gender_direction_score": -0.3164411783218384,
+      "pair_difference": 0.22674141824245453
+    },
+    {
+      "male": "Lehrer",
+      "female": "Lehrerin",
+      "male_gender_direction_score": -0.14842627942562103,
+      "female_gender_direction_score": -0.3426401913166046,
+      "pair_difference": 0.19421391189098358
+    },
+    {
+      "male": "Programmierer",
+      "female": "Programmiererin",
+      "male_gender_direction_score": -0.044763244688510895,
+      "female_gender_direction_score": -0.169019415974617,
+      "pair_difference": 0.12425617128610611
+    },
+    {
+      "male": "Ingenieur",
+      "female": "Ingenieurin",
+      "male_gender_direction_score": -0.10415496677160263,
+      "female_gender_direction_score": -0.2452484518289566,
+      "pair_difference": 0.14109348505735397
+    },
+    {
+      "male": "Autor",
+      "female": "Autorin",
+      "male_gender_direction_score": -0.10290040075778961,
+      "female_gender_direction_score": -0.21163706481456757,
+      "pair_difference": 0.10873666405677795
+    },
+    {
+      "male": "Politiker",
+      "female": "Politikerin",
+      "male_gender_direction_score": -0.06856908649206161,
+      "female_gender_direction_score": -0.19964173436164856,
+      "pair_difference": 0.13107264786958694
+    },
+    {
+      "male": "Fotograf",
+      "female": "Fotografin",
+      "male_gender_direction_score": -0.1263020634651184,
+      "female_gender_direction_score": -0.21859653294086456,
+      "pair_difference": 0.09229446947574615
+    },
+    {
+      "male": "Schauspieler",
+      "female": "Schauspielerin",
+      "male_gender_direction_score": -0.07337556034326553,
+      "female_gender_direction_score": -0.19181929528713226,
+      "pair_difference": 0.11844373494386673
+    }
+  ]
+}

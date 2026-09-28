@@ -1,0 +1,4 @@
+If gensim installation fails because of a SciPy compatibility issue,
+use a fresh virtual environment and install a compatible gensim/scipy pair.
+
+Recommended Python: 3.11.

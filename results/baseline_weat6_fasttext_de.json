@@ -1,0 +1,10 @@
+{
+  "X_n": 8,
+  "Y_n": 8,
+  "A_n": 8,
+  "B_n": 7,
+  "mean_X_association": 0.004937875446440972,
+  "mean_Y_association": -0.02228621299147464,
+  "effect_size": 1.4345527109178073,
+  "model": "fasttext_de"
+}

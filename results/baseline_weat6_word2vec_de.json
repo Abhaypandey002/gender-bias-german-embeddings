@@ -1,0 +1,10 @@
+{
+  "X_n": 8,
+  "Y_n": 8,
+  "A_n": 5,
+  "B_n": 7,
+  "mean_X_association": 0.06784545639480812,
+  "mean_Y_association": -0.030501176085497832,
+  "effect_size": 1.8870675834796715,
+  "model": "word2vec_de"
+}

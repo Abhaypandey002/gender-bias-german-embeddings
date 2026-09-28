@@ -1,0 +1,22 @@
+@"
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Large pretrained models
+models/*.model
+models/*.bin
+models/*.gz
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Python cache
+.pytest_cache/
+.mypy_cache/
+"@ | Set-Content .gitignore
