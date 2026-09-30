@@ -60,6 +60,73 @@ class DebiasedVectors:
     def get_vector(self, key, *args, **kwargs):
         return self[key]
 
+def occupation_diagnostic(kv_before, kv_after, gender_direction, occupation_pairs):
+    import numpy as np
+
+    def cosine_to_direction(vector, direction):
+        v_norm = np.linalg.norm(vector)
+        d_norm = np.linalg.norm(direction)
+
+        if v_norm == 0 or d_norm == 0:
+            return 0.0
+
+        return float(
+            np.dot(vector, direction) / (v_norm * d_norm)
+        )
+
+    results = []
+
+    for male_word, female_word in occupation_pairs:
+        if male_word not in kv_before.key_to_index:
+            continue
+        if female_word not in kv_before.key_to_index:
+            continue
+        if male_word not in kv_after.key_to_index:
+            continue
+        if female_word not in kv_after.key_to_index:
+            continue
+
+        male_before = cosine_to_direction(
+            kv_before[male_word],
+            gender_direction
+        )
+
+        female_before = cosine_to_direction(
+            kv_before[female_word],
+            gender_direction
+        )
+
+        male_after = cosine_to_direction(
+            kv_after[male_word],
+            gender_direction
+        )
+
+        female_after = cosine_to_direction(
+            kv_after[female_word],
+            gender_direction
+        )
+
+        gap_before = male_before - female_before
+        gap_after = male_after - female_after
+
+        results.append({
+            "male": male_word,
+            "female": female_word,
+
+            "male_before": male_before,
+            "female_before": female_before,
+
+            "male_after": male_after,
+            "female_after": female_after,
+
+            "gender_gap_before": gap_before,
+            "gender_gap_after": gap_after,
+
+            "absolute_gap_change":
+                abs(gap_after) - abs(gap_before),
+        })
+
+    return results
 
 def hard_debias(kv, gender_direction, neutralize_words, equalize_pairs):
     g = unit(gender_direction.astype(np.float32))

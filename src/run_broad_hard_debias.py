@@ -212,47 +212,225 @@ def common_rank_neutral_vocab(kv1, kv2, exclusions, semantic_probe, n=MAX_NEUTRA
 
 def evaluate_model(name, kv, gender_pairs, occupation_pairs, neutral_vocab, semantic_probe):
     direction, used_gender = build_gender_direction(kv, gender_pairs)
-    debiased, meta = hard_debias(kv, direction, neutral_vocab, occupation_pairs)
+
+    debiased, meta = hard_debias(
+        kv,
+        direction,
+        neutral_vocab,
+        occupation_pairs
+    )
 
     eval_sets = load_eval_sets()
+
     def reduction(before, after):
         b = before.get("effect_size")
         a = after.get("effect_size")
+
         if b is None or a is None or b == 0:
             return None
-        return float((abs(b) - abs(a)) / abs(b) * 100.0)
 
-    weat_before = weat(kv, filter_four(kv, eval_sets["weat"]))
-    weat_after = weat(debiased, filter_four(kv, eval_sets["weat"]))
-    ger1_before = weat(kv, filter_four(kv, eval_sets["ger1"]))
-    ger1_after = weat(debiased, filter_four(kv, eval_sets["ger1"]))
-    ger2_before = weat(kv, filter_four(kv, eval_sets["ger2"]))
-    ger2_after = weat(debiased, filter_four(kv, eval_sets["ger2"]))
+        return float(
+            (abs(b) - abs(a)) / abs(b) * 100.0
+        )
+
+    # ---------------------------------------------------------
+    # WEAT
+    # ---------------------------------------------------------
+
+    weat_before = weat(
+        kv,
+        filter_four(kv, eval_sets["weat"])
+    )
+
+    weat_after = weat(
+        debiased,
+        filter_four(kv, eval_sets["weat"])
+    )
+
+    # ---------------------------------------------------------
+    # GER1
+    # ---------------------------------------------------------
+
+    ger1_before = weat(
+        kv,
+        filter_four(kv, eval_sets["ger1"])
+    )
+
+    ger1_after = weat(
+        debiased,
+        filter_four(kv, eval_sets["ger1"])
+    )
+
+    # ---------------------------------------------------------
+    # GER2
+    # ---------------------------------------------------------
+
+    ger2_before = weat(
+        kv,
+        filter_four(kv, eval_sets["ger2"])
+    )
+
+    ger2_after = weat(
+        debiased,
+        filter_four(kv, eval_sets["ger2"])
+    )
+
+    # ---------------------------------------------------------
+    # OCCUPATION-PAIR DIAGNOSTIC
+    # ---------------------------------------------------------
+    #
+    # The gender direction is fixed from the ORIGINAL model.
+    # Therefore before/after differences measure movement of
+    # occupation vectors relative to the same reference axis.
+    #
+
+    occupation_results = occupation_diagnostic(
+        kv_before=kv,
+        kv_after=debiased,
+        gender_direction=direction,
+        occupation_pairs=occupation_pairs,
+    )
+
+    # ---------------------------------------------------------
+    # SUMMARY
+    # ---------------------------------------------------------
 
     out = {
         "model": name,
+
         "gender_pairs_used": used_gender,
+
         "neutralization_requested": len(neutral_vocab),
         "neutralization_applied": len(meta.neutralized_words),
         "equalization_applied": len(meta.equalized_pairs),
+
+        # WEAT
         "weat_before": weat_before,
         "weat_after": weat_after,
-        "weat_absolute_effect_reduction_percent": reduction(weat_before, weat_after),
+        "weat_absolute_effect_reduction_percent":
+            reduction(weat_before, weat_after),
+
+        # GER1
         "ger1_before": ger1_before,
         "ger1_after": ger1_after,
-        "ger1_absolute_effect_reduction_percent": reduction(ger1_before, ger1_after),
+        "ger1_absolute_effect_reduction_percent":
+            reduction(ger1_before, ger1_after),
+
+        # GER2
         "ger2_before": ger2_before,
         "ger2_after": ger2_after,
-        "ger2_absolute_effect_reduction_percent": reduction(ger2_before, ger2_after),
-        "semantic_preservation": semantic_preservation(kv, debiased, semantic_probe),
+        "ger2_absolute_effect_reduction_percent":
+            reduction(ger2_before, ger2_after),
+
+        # Occupation diagnostic
+        "occupation_diagnostic": occupation_results,
+
+        # Semantic preservation
+        "semantic_preservation":
+            semantic_preservation(
+                kv,
+                debiased,
+                semantic_probe
+            ),
     }
+
     return out
 
+def occupation_diagnostic(kv_before, kv_after, gender_direction, occupation_pairs):
+    """
+    Measure occupation-pair positions along the gender direction
+    before and after debiasing.
+
+    The gender direction is kept fixed so that the comparison
+    measures movement of occupation vectors rather than changes
+    in the reference axis.
+    """
+
+    results = []
+
+    for male_word, female_word in occupation_pairs:
+
+        if male_word not in kv_before.key_to_index:
+            continue
+
+        if female_word not in kv_before.key_to_index:
+            continue
+
+        if male_word not in kv_after.key_to_index:
+            continue
+
+        if female_word not in kv_after.key_to_index:
+            continue
+
+        male_before = float(
+            np.dot(
+                kv_before[male_word],
+                gender_direction
+            )
+        )
+
+        female_before = float(
+            np.dot(
+                kv_before[female_word],
+                gender_direction
+            )
+        )
+
+        male_after = float(
+            np.dot(
+                kv_after[male_word],
+                gender_direction
+            )
+        )
+
+        female_after = float(
+            np.dot(
+                kv_after[female_word],
+                gender_direction
+            )
+        )
+
+        gap_before = male_before - female_before
+        gap_after = male_after - female_after
+
+        results.append({
+            "male": male_word,
+            "female": female_word,
+
+            "male_before": male_before,
+            "female_before": female_before,
+
+            "male_after": male_after,
+            "female_after": female_after,
+
+            "gender_gap_before": gap_before,
+            "gender_gap_after": gap_after,
+
+            "absolute_gap_change": abs(gap_after) - abs(gap_before),
+        })
+
+    return results
 
 def main():
     RESULTS.mkdir(parents=True, exist_ok=True)
-    gender_pairs = read_pairs(DATA / "gender_pairs.csv")
-    occupation_pairs = read_pairs(DATA / "occupation_pairs.csv")
+    # gender_pairs = read_pairs(DATA / "gender_pairs.csv")
+    # occupation_pairs = read_pairs(DATA / "occupation_pairs.csv")
+    gender_pairs = [
+    ("Mann", "Frau"),
+    ("Vater", "Mutter"),
+    ("Sohn", "Tochter"),
+    ("Bruder", "Schwester"),
+    ]
+
+    occupation_pairs = [
+    ("Lehrer", "Lehrerin"),
+    ("Programmierer", "Programmiererin"),
+    ("Ingenieur", "Ingenieurin"),
+    ("Autor", "Autorin"),
+    ("Politiker", "Politikerin"),
+    ("Fotograf", "Fotografin"),
+    ("Schauspieler", "Schauspielerin"),
+    ]
     semantic_probe = read_lines(DATA / "semantic_probe.txt")
 
     models = {}

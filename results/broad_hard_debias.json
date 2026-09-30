@@ -67,10 +67,10 @@
           3,
           3
         ],
-        "effect_size": 0.6569551834476356,
-        "p_value": 0.3945605439456054
+        "effect_size": 0.6572347233284873,
+        "p_value": 0.384961503849615
       },
-      "ger1_absolute_effect_reduction_percent": -3.100099661880717,
+      "ger1_absolute_effect_reduction_percent": -3.1439696096358065,
       "ger2_before": {
         "n": [
           4,
@@ -88,10 +88,89 @@
           6,
           2
         ],
-        "effect_size": 1.8238858206483228,
+        "effect_size": 1.81861805252673,
         "p_value": 0.030496950304969503
       },
-      "ger2_absolute_effect_reduction_percent": -5.849262463496458,
+      "ger2_absolute_effect_reduction_percent": -5.543547399435525,
+      "occupation_diagnostic": [
+        {
+          "male": "Lehrer",
+          "female": "Lehrerin",
+          "male_before": -0.05264686420559883,
+          "female_before": -0.36948633193969727,
+          "male_after": -1.0786607163026929e-09,
+          "female_after": -1.0786607163026929e-09,
+          "gender_gap_before": 0.31683946773409843,
+          "gender_gap_after": 0.0,
+          "absolute_gap_change": -0.31683946773409843
+        },
+        {
+          "male": "Programmierer",
+          "female": "Programmiererin",
+          "male_before": 0.17327699065208435,
+          "female_before": 0.03869783878326416,
+          "male_after": -6.555637810379267e-09,
+          "female_after": -6.555637810379267e-09,
+          "gender_gap_before": 0.1345791518688202,
+          "gender_gap_after": 0.0,
+          "absolute_gap_change": -0.1345791518688202
+        },
+        {
+          "male": "Ingenieur",
+          "female": "Ingenieurin",
+          "male_before": 0.33917659521102905,
+          "female_before": -0.1547805517911911,
+          "male_after": -6.56291376799345e-09,
+          "female_after": -6.56291376799345e-09,
+          "gender_gap_before": 0.49395714700222015,
+          "gender_gap_after": 0.0,
+          "absolute_gap_change": -0.49395714700222015
+        },
+        {
+          "male": "Autor",
+          "female": "Autorin",
+          "male_before": 0.23757746815681458,
+          "female_before": -0.21217945218086243,
+          "male_after": -1.4155375538393855e-08,
+          "female_after": -1.4155375538393855e-08,
+          "gender_gap_before": 0.449756920337677,
+          "gender_gap_after": 0.0,
+          "absolute_gap_change": -0.449756920337677
+        },
+        {
+          "male": "Politiker",
+          "female": "Politikerin",
+          "male_before": 0.23892630636692047,
+          "female_before": -0.09379155933856964,
+          "male_after": -5.587935447692871e-09,
+          "female_after": -5.587935447692871e-09,
+          "gender_gap_before": 0.3327178657054901,
+          "gender_gap_after": 0.0,
+          "absolute_gap_change": -0.3327178657054901
+        },
+        {
+          "male": "Fotograf",
+          "female": "Fotografin",
+          "male_before": 0.24294939637184143,
+          "female_before": -0.2019110471010208,
+          "male_after": 1.6152625903487206e-09,
+          "female_after": 1.6152625903487206e-09,
+          "gender_gap_before": 0.44486044347286224,
+          "gender_gap_after": 0.0,
+          "absolute_gap_change": -0.44486044347286224
+        },
+        {
+          "male": "Schauspieler",
+          "female": "Schauspielerin",
+          "male_before": 0.28417766094207764,
+          "female_before": -0.06300118565559387,
+          "male_after": 9.89530235528946e-10,
+          "female_after": 9.89530235528946e-10,
+          "gender_gap_before": 0.3471788465976715,
+          "gender_gap_after": 0.0,
+          "absolute_gap_change": -0.3471788465976715
+        }
+      ],
       "semantic_preservation": {
         "n_words": 18,
         "mean_absolute_cosine_change": 0.0011851497982837762,
@@ -116,15 +195,11 @@
         [
           "Bruder",
           "Schwester"
-        ],
-        [
-          "Junge",
-          "Mädchen"
         ]
       ],
       "neutralization_requested": 5000,
       "neutralization_applied": 5000,
-      "equalization_applied": 8,
+      "equalization_applied": 7,
       "weat_before": {
         "n": [
           8,
@@ -142,10 +217,10 @@
           8,
           7
         ],
-        "effect_size": 1.3033156024834278,
-        "p_value": 0.0057994200579942
+        "effect_size": 1.345908023801021,
+        "p_value": 0.004399560043995601
       },
-      "weat_absolute_effect_reduction_percent": 9.148294617241064,
+      "weat_absolute_effect_reduction_percent": 6.179256185021785,
       "ger1_before": {
         "n": [
           5,
@@ -163,10 +238,10 @@
           5,
           5
         ],
-        "effect_size": 1.333448476294213,
-        "p_value": 0.0254974502549745
+        "effect_size": 1.354584069481412,
+        "p_value": 0.018598140185981403
       },
-      "ger1_absolute_effect_reduction_percent": 1.0650984413772053,
+      "ger1_absolute_effect_reduction_percent": -0.5030520110271257,
       "ger2_before": {
         "n": [
           5,
@@ -184,14 +259,93 @@
           6,
           6
         ],
-        "effect_size": 1.380881355846562,
-        "p_value": 0.0254974502549745
+        "effect_size": 1.6019076769711638,
+        "p_value": 0.009099090090990901
       },
-      "ger2_absolute_effect_reduction_percent": 0.5014744724468798,
+      "ger2_absolute_effect_reduction_percent": -15.424436150913712,
+      "occupation_diagnostic": [
+        {
+          "male": "Lehrer",
+          "female": "Lehrerin",
+          "male_before": 0.2042352706193924,
+          "female_before": 0.23424942791461945,
+          "male_after": 0.7813568711280823,
+          "female_after": -0.7813568115234375,
+          "gender_gap_before": -0.03001415729522705,
+          "gender_gap_after": 1.5627136826515198,
+          "absolute_gap_change": 1.5326995253562927
+        },
+        {
+          "male": "Programmierer",
+          "female": "Programmiererin",
+          "male_before": 0.020297328010201454,
+          "female_before": 0.05187637731432915,
+          "male_after": 0.9427257180213928,
+          "female_after": -0.9427257776260376,
+          "gender_gap_before": -0.03157904930412769,
+          "gender_gap_after": 1.8854514956474304,
+          "absolute_gap_change": 1.8538724463433027
+        },
+        {
+          "male": "Ingenieur",
+          "female": "Ingenieurin",
+          "male_before": 0.09993267804384232,
+          "female_before": 0.10932599008083344,
+          "male_after": 0.8833033442497253,
+          "female_after": -0.8833032846450806,
+          "gender_gap_before": -0.00939331203699112,
+          "gender_gap_after": 1.766606628894806,
+          "absolute_gap_change": 1.7572133168578148
+        },
+        {
+          "male": "Autor",
+          "female": "Autorin",
+          "male_before": 0.15856090188026428,
+          "female_before": 0.13897375762462616,
+          "male_after": 0.687161386013031,
+          "female_after": -0.687161386013031,
+          "gender_gap_before": 0.019587144255638123,
+          "gender_gap_after": 1.374322772026062,
+          "absolute_gap_change": 1.354735627770424
+        },
+        {
+          "male": "Politiker",
+          "female": "Politikerin",
+          "male_before": 0.034069910645484924,
+          "female_before": 0.06976454704999924,
+          "male_after": 0.8824030160903931,
+          "female_after": -0.8824030160903931,
+          "gender_gap_before": -0.03569463640451431,
+          "gender_gap_after": 1.7648060321807861,
+          "absolute_gap_change": 1.7291113957762718
+        },
+        {
+          "male": "Fotograf",
+          "female": "Fotografin",
+          "male_before": 0.0926983579993248,
+          "female_before": 0.09860942512750626,
+          "male_after": 0.842919111251831,
+          "female_after": -0.8429191708564758,
+          "gender_gap_before": -0.0059110671281814575,
+          "gender_gap_after": 1.6858382821083069,
+          "absolute_gap_change": 1.6799272149801254
+        },
+        {
+          "male": "Schauspieler",
+          "female": "Schauspielerin",
+          "male_before": 0.03813296929001808,
+          "female_before": 0.0635332316160202,
+          "male_after": 0.9390829801559448,
+          "female_after": -0.9390830397605896,
+          "gender_gap_before": -0.02540026232600212,
+          "gender_gap_after": 1.8781660199165344,
+          "absolute_gap_change": 1.8527657575905323
+        }
+      ],
       "semantic_preservation": {
         "n_words": 20,
-        "mean_absolute_cosine_change": 0.005721052447715696,
-        "pairwise_cosine_correlation": 0.9957261910439865
+        "mean_absolute_cosine_change": 0.004168314986999095,
+        "pairwise_cosine_correlation": 0.9986868738700331
       }
     }
   }
